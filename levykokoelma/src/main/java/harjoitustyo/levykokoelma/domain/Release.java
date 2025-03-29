@@ -1,29 +1,36 @@
 package harjoitustyo.levykokoelma.domain;
 
-public class Record {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-    private Long recordId;
+@Entity
+public class Release {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long releaseId;
     private String title;
     private String artist;
-    private Long releaseYear;
+    private long releaseYear;
     private Integer rating;
 
-    public Record() {
+    public Release() {
     }
 
-    public Record(String title, String artist, Long releaseYear, Integer rating) {
+    public Release(String title, String artist, Long releaseYear, Integer rating) {
         this.title = title;
         this.artist = artist;
         this.releaseYear = releaseYear;
         this.rating = rating;
     }
 
-    public Long getRecordId() {
-        return recordId;
+    public Long getReleaseId() {
+        return releaseId;
     }
 
-    public void setRecordId(Long recordId) {
-        this.recordId = recordId;
+    public void setReleaseId(Long releaseId) {
+        this.releaseId = releaseId;
     }
 
     public String getTitle() {
@@ -60,7 +67,7 @@ public class Record {
 
     @Override
     public String toString() {
-        return "Record [title=" + title + ", artist=" + artist + ", releaseYear=" + releaseYear + ", rating=" + rating
+        return "Release [title=" + title + ", artist=" + artist + ", releaseYear=" + releaseYear + ", rating=" + rating
                 + "]";
     }
 

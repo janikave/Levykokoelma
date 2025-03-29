@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Collection</title>
+</head>
+
+<body>
+    <h1>Records</h1>
+
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Release Year</th>
+            <th>Rating</th>
+        </tr>
+        <tr th:each="record : ${records}">
+            <td th:text="${record.title}">Title</td>
+            <td th:text="${record.artist}">Artist</td>
+            <td th:text="${record.releaseYear}">Release Year</td>
+            <td th:text="${record.rating}">Rating</td>
+        </tr>
+
+    </table>
+</body>
+
+</html>
