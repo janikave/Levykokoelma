@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+
+<body>
+
+    <h2>Add new release to your collection</h2>
+
+    <form action="#" th:action="@{/saverelease}" th:object="${release}" method="post">
+        <p>Title: <input type="text" th:field="${release.title}"></p>
+        <p>Artist: <input type="text" th:field="${release.artist}"></p>
+        <p>Released in: <input type="text" th:field="${release.releaseYear}"></p>
+        <label for="formatlist">Format: </label>
+        <select id="formatlist" th:field="*{format}" class="form-control">
+            <option th:each="format : ${formats}" th:value="${format.formatId}" th:text="${format.type}">
+            </option>
+        </select>
+        <p>Rating: <input type="text" th:field="${release.rating}"></p>
+        <input type="submit" value="Add"> <input type="reset" value="Reset">
+    </form>
+</body>
+
+</html>

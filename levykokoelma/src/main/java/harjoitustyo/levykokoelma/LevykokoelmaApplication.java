@@ -7,6 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import harjoitustyo.levykokoelma.domain.Format;
+import harjoitustyo.levykokoelma.domain.FormatRepository;
+import harjoitustyo.levykokoelma.domain.Genre;
 import harjoitustyo.levykokoelma.domain.Release;
 import harjoitustyo.levykokoelma.domain.ReleaseRepository;
 
@@ -19,21 +22,41 @@ public class LevykokoelmaApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(ReleaseRepository repository) {
+	public CommandLineRunner demo(ReleaseRepository repository, FormatRepository frepository) {
 
 		return (args) -> {
-			log.info("some sample releases");
 
-			Release r1 = new Release("Abbey Road", "Beatles", (long) 1969, 5);
-			Release r2 = new Release("Let It Be", "The Replacements", (long) 1984, 4);
+			Format cd = new Format("CD");
+			Format lp = new Format("Vinyl");
+			Format cas = new Format("Cassette");
+			Format dig = new Format("Digital");
 
-			repository.save(r1);
-			repository.save(r2);
+			frepository.save(cd);
+			frepository.save(lp);
+			frepository.save(cas);
+			frepository.save(dig);
 
-			log.info("fetching the sample releases");
-			for (Release release : repository.findAll()) {
+			Genre rock = new Genre("Rock");
+			Genre pop = new Genre("Pop");
 
-				log.info(release.toString());
+			log.info("fetching available formats");
+			for (Format format : frepository.findAll()) {
+				log.info(format.toString());
+
+				log.info("some sample releases");
+
+				Release r1 = new Release("Abbey Road", "The Beatles", (long) 1969, 5, cd, pop);
+				Release r2 = new Release("Let It Be", "The Replacements", (long) 1984, 4, lp, rock);
+
+				repository.save(r1);
+				repository.save(r2);
+
+				log.info("fetching the sample releases");
+				for (Release release : repository.findAll()) {
+
+					log.info(release.toString());
+				}
+
 			}
 		};
 	}

@@ -1,9 +1,22 @@
 package harjoitustyo.levykokoelma.domain;
 
-public class Format {
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 
+@Entity
+public class Format {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long formatId;
     private String type;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "format")
+    private List<Release> records;
 
     public Format() {
     }
