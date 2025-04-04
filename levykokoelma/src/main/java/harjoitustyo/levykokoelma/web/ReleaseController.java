@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import harjoitustyo.levykokoelma.domain.ReleaseRepository;
 import harjoitustyo.levykokoelma.domain.FormatRepository;
+import harjoitustyo.levykokoelma.domain.GenreRepository;
 import harjoitustyo.levykokoelma.domain.Release;
 
 @Controller
@@ -22,6 +23,9 @@ public class ReleaseController {
 
     @Autowired
     private FormatRepository frepository;
+
+    @Autowired
+    private GenreRepository grepository;
 
     @GetMapping("/collection")
     public String getAllRecords(Model model) {
@@ -35,6 +39,7 @@ public class ReleaseController {
     public String getNewRelease(Model model) {
         model.addAttribute("release", new Release());
         model.addAttribute("formats", frepository.findAll());
+        model.addAttribute("genres", grepository.findAll());
 
         return "addrelease";
     }

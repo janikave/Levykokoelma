@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import harjoitustyo.levykokoelma.domain.Format;
 import harjoitustyo.levykokoelma.domain.FormatRepository;
 import harjoitustyo.levykokoelma.domain.Genre;
+import harjoitustyo.levykokoelma.domain.GenreRepository;
 import harjoitustyo.levykokoelma.domain.Release;
 import harjoitustyo.levykokoelma.domain.ReleaseRepository;
 
@@ -22,7 +23,8 @@ public class LevykokoelmaApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(ReleaseRepository repository, FormatRepository frepository) {
+	public CommandLineRunner demo(ReleaseRepository repository, FormatRepository frepository,
+			GenreRepository grepository) {
 
 		return (args) -> {
 
@@ -38,6 +40,9 @@ public class LevykokoelmaApplication {
 
 			Genre rock = new Genre("Rock");
 			Genre pop = new Genre("Pop");
+
+			grepository.save(rock);
+			grepository.save(pop);
 
 			log.info("fetching available formats");
 			for (Format format : frepository.findAll()) {
