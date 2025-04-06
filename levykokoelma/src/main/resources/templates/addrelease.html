@@ -20,19 +20,12 @@
             <option th:each="format : ${formats}" th:value="${format.formatId}" th:text="${format.type}">
             </option>
         </select><br><br>
-        <label for="genrelist">Primary Genre:</label>
-        <select id="genrelist" th:field="*{genre}" class="form-control">
+        <label for="genrelist">Genre(s):</label>
+        <select id="genrelist" name="genres" multiple th:field="*{genres}" class="form-control">
             <option th:each="genre : ${genres}" th:value="${genre.genreId}" th:text="${genre.name}">
             </option>
         </select>
         <br>
-        <label for="genrelist">Secondary Genre:</label>
-
-        <select id="genrelist" th:field="*{genre}" class="form-control">
-            <option value="">No genre</option>
-            <option th:each="genre : ${genres}" th:value="${genre.genreId}" th:text="${genre.name}">
-            </option>
-        </select>
         <p>Rating: <input type="text" th:field="${release.rating}"></p>
         <input type="submit" value="Add"> <input type="reset" value="Reset">
     </form>

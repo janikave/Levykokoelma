@@ -26,10 +26,6 @@ public class Release {
     @JoinColumn(name = "formatId")
     private Format format;
 
-    @ManyToOne
-    @JoinColumn(name = "genreId")
-    private Genre genre;
-
     @ManyToMany
     @JoinTable(name = "release_genre", joinColumns = @JoinColumn(name = "releaseId"), inverseJoinColumns = @JoinColumn(name = "genreId"))
     private List<Genre> genres = new ArrayList<>();
@@ -38,13 +34,13 @@ public class Release {
     }
 
     public Release(String title, String artist, long releaseYear, Integer rating, Format format,
-            Genre genre) {
+            List<Genre> genres) {
         this.title = title;
         this.artist = artist;
         this.releaseYear = releaseYear;
         this.rating = rating;
         this.format = format;
-        this.genre = genre;
+        this.genres = genres;
     }
 
     public Long getReleaseId() {
@@ -95,14 +91,6 @@ public class Release {
         this.format = format;
     }
 
-    public Genre getGenre() {
-        return genre;
-    }
-
-    public void setGenre(Genre genre) {
-        this.genre = genre;
-    }
-
     public List<Genre> getGenres() {
         return genres;
     }
@@ -114,7 +102,7 @@ public class Release {
     @Override
     public String toString() {
         return "Release [title=" + title + ", artist=" + artist + ", releaseYear=" + releaseYear + ", rating=" + rating
-                + ", format=" + format + ", genre=" + genre + "]";
+                + ", format=" + format + "]";
     }
 
 }

@@ -1,6 +1,9 @@
 package harjoitustyo.levykokoelma;
 
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -44,26 +47,27 @@ public class LevykokoelmaApplication {
 			grepository.save(rock);
 			grepository.save(pop);
 
+			List<Genre> rocklist = List.of(rock);
+			List<Genre> poplist = List.of(pop);
+
 			log.info("fetching available formats");
 			for (Format format : frepository.findAll()) {
 				log.info(format.toString());
+			}
 
-				log.info("some sample releases");
+			log.info("some sample releases");
 
-				Release r1 = new Release("Abbey Road", "The Beatles", (long) 1969, 5, cd, pop);
-				Release r2 = new Release("Let It Be", "The Replacements", (long) 1984, 4, lp, rock);
+			Release r1 = new Release("Abbey Road", "The Beatles", (long) 1969, 5, cd, poplist);
+			Release r2 = new Release("Let It Be", "The Replacements", (long) 1984, 4, lp, rocklist);
 
-				repository.save(r1);
-				repository.save(r2);
+			repository.save(r1);
+			repository.save(r2);
 
-				log.info("fetching the sample releases");
-				for (Release release : repository.findAll()) {
+			log.info("fetching the sample releases");
+			for (Release release : repository.findAll()) {
 
-					log.info(release.toString());
-				}
-
+				log.info(release.toString());
 			}
 		};
-	}
-
+	};
 }

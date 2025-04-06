@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import harjoitustyo.levykokoelma.domain.ReleaseRepository;
 import harjoitustyo.levykokoelma.domain.FormatRepository;
+import harjoitustyo.levykokoelma.domain.Genre;
 import harjoitustyo.levykokoelma.domain.GenreRepository;
 import harjoitustyo.levykokoelma.domain.Release;
 
@@ -45,7 +47,9 @@ public class ReleaseController {
     }
 
     @PostMapping("/saverelease")
-    public String addNewRelease(@ModelAttribute Release release) {
+    public String addNewRelease(@ModelAttribute Release release, @RequestParam("genres") List<Long> genreIds) {
+        List<Genre> selectedGenres = (List<Genre>) grepository.findAllById(genreIds);
+        release.setGenres(selectedGenres);
         repository.save(release);
 
         return "redirect:/collection";

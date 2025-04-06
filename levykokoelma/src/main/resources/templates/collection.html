@@ -15,6 +15,8 @@
             <th>Title</th>
             <th>Artist</th>
             <th>Release Year</th>
+            <th>Format</th>
+            <th>Genre</th>
             <th>Rating</th>
         </tr>
         <tr th:each="record : ${records}">
@@ -22,7 +24,7 @@
             <td th:text="${record.artist}">Artist</td>
             <td th:text="${record.releaseYear}">Release Year</td>
             <td th:text="${record.format.type}">Format</td>
-            <td th:text="${record.genre.name}"></td>
+            <td span th:each="genre : ${record.genres}" th:text="${genre.name + ' '}"></span></td>
             <td th:text="${record.rating}">Rating</td>
             <td><a th:href="@{/deleterelease/{releaseId}(releaseId=${record.releaseId})}">Delete</a></td>
         </tr>
