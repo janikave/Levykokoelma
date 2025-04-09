@@ -13,6 +13,9 @@
     <p>User: <span sec:authentication="name"></span></p>
     <h3>Records</h3>
 
+    <a href="/addrelease">Add new release</a>
+    <a href="/addgenre">Add new genre</a>
+
     <table>
         <tr>
             <th>Title</th>
@@ -32,8 +35,13 @@
             <td sec:authorize="hasRole('ADMIN')"><a
                     th:href="@{/deleterelease/{releaseId}(releaseId=${record.releaseId})}">Delete</a></td>
         </tr>
-
     </table>
+
+    <div>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Log out">
+        </form>
+    </div>
 </body>
 
 </html>
