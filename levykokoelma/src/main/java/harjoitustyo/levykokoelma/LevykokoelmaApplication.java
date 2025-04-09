@@ -10,6 +10,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import harjoitustyo.levykokoelma.domain.AppUser;
+import harjoitustyo.levykokoelma.domain.AppUserRepository;
 import harjoitustyo.levykokoelma.domain.Format;
 import harjoitustyo.levykokoelma.domain.FormatRepository;
 import harjoitustyo.levykokoelma.domain.Genre;
@@ -27,7 +29,7 @@ public class LevykokoelmaApplication {
 
 	@Bean
 	public CommandLineRunner demo(ReleaseRepository repository, FormatRepository frepository,
-			GenreRepository grepository) {
+			GenreRepository grepository, AppUserRepository urepository) {
 
 		return (args) -> {
 
@@ -43,9 +45,17 @@ public class LevykokoelmaApplication {
 
 			Genre rock = new Genre("Rock");
 			Genre pop = new Genre("Pop");
+			Genre hiphop = new Genre("Hip Hop");
+			Genre punk = new Genre("Punk");
+			Genre electro = new Genre("Electronic");
+			Genre dance = new Genre("Dance");
 
 			grepository.save(rock);
 			grepository.save(pop);
+			grepository.save(hiphop);
+			grepository.save(punk);
+			grepository.save(electro);
+			grepository.save(dance);
 
 			List<Genre> rocklist = List.of(rock);
 			List<Genre> poplist = List.of(pop);
@@ -68,6 +78,19 @@ public class LevykokoelmaApplication {
 
 				log.info(release.toString());
 			}
+
+			AppUser user1 = new AppUser("user",
+					"$2a$12$RTpkDOxp1aAw7UlLiGQ9H.Xd6OCW6DxUY04d7xs8HH4Po.UhVsj1e",
+					"USER");
+			AppUser user2 = new AppUser("admin",
+					"$2a$12$QTHarE4Smz.WIuxkcVfEzeP6j0ZLjyZA6wcdgS6LLf8QGxyY39d4e",
+					"ROLE_ADMIN");
+			AppUser jani = new AppUser("jani", "$2a$12$2/XlGAKL62zYU0NOLW9Qz.PSGdiE2m2I5WhOmwRVCszowOdk0TWwC", "USER");
+
+			urepository.save(user1);
+			urepository.save(user2);
+			urepository.save(jani);
+
 		};
 	};
 }

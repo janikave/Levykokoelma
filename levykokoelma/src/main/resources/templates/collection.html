@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 <head>
     <meta charset="UTF-8">
@@ -8,7 +9,9 @@
 </head>
 
 <body>
-    <h1>Records</h1>
+
+    <p>User: <span sec:authentication="name"></span></p>
+    <h3>Records</h3>
 
     <table>
         <tr>
@@ -24,9 +27,10 @@
             <td th:text="${record.artist}">Artist</td>
             <td th:text="${record.releaseYear}">Release Year</td>
             <td th:text="${record.format.type}">Format</td>
-            <td span th:each="genre : ${record.genres}" th:text="${genre.name + ' '}"></span></td>
+            <td><span th:each="genre : ${record.genres}" th:text="${genre.name + '  '}"></span></td>
             <td th:text="${record.rating}">Rating</td>
-            <td><a th:href="@{/deleterelease/{releaseId}(releaseId=${record.releaseId})}">Delete</a></td>
+            <td sec:authorize="hasRole('ADMIN')"><a
+                    th:href="@{/deleterelease/{releaseId}(releaseId=${record.releaseId})}">Delete</a></td>
         </tr>
 
     </table>
