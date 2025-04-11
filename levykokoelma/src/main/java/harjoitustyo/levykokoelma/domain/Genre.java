@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long genreId;
+    @NotNull(message = "Add a name for the genre")
     private String name;
 
     @ManyToMany(mappedBy = "genres")

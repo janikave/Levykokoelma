@@ -32,6 +32,7 @@
             <td th:text="${record.format.type}">Format</td>
             <td><span th:each="genre : ${record.genres}" th:text="${genre.name + '  '}"></span></td>
             <td th:text="${record.rating}">Rating</td>
+            <td><a th:href="@{/editrelease/{releaseId}(releaseId=${record.releaseId})}">Edit</a></td>
             <td sec:authorize="hasRole('ADMIN')"><a
                     th:href="@{/deleterelease/{releaseId}(releaseId=${record.releaseId})}">Delete</a></td>
         </tr>

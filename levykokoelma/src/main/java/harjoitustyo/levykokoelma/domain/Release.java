@@ -3,6 +3,10 @@ package harjoitustyo.levykokoelma.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,9 +21,16 @@ public class Release {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long releaseId;
+    @NotNull(message = "Add the album title here")
     private String title;
+    @NotNull(message = "Add the artist here")
     private String artist;
+    @NotNull(message = "Add the release year here")
+    @Min(1900)
+    @Max(2025)
     private long releaseYear;
+    @Min(1)
+    @Max(5)
     private Integer rating;
 
     @ManyToOne

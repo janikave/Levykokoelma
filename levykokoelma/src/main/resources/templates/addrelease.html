@@ -11,10 +11,21 @@
 
     <h2>Add new release to your collection</h2>
 
-    <form action="#" th:action="@{/saverelease}" th:object="${release}" method="post">
-        <p>Title: <input type="text" th:field="${release.title}"></p>
-        <p>Artist: <input type="text" th:field="${release.artist}"></p>
-        <p>Released in: <input type="text" th:field="${release.releaseYear}"></p>
+    <form action="#" th:action="@{${release.releaseId} != null ? '/updaterelease' : '/saverelease'}"
+        th:object="${release}" method="post">
+        <input type="hidden" th:if="${release.releaseId} != null" th:field="*{releaseId}" />
+        <p>
+            Title: <input type="text" th:field="*{title}">
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Invalid title</span>
+        </p>
+        <p>
+            Artist: <input type="text" th:field="*{artist}">
+            <span th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}">Invalid artist</span>
+        </p>
+        <p>
+            Released in: <input type="text" th:field="*{releaseYear}">
+            <span th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}">Invalid release year</span>
+        </p>
         <label for="formatlist">Format: </label>
         <select id="formatlist" th:field="*{format}" class="form-control">
             <option th:each="format : ${formats}" th:value="${format.formatId}" th:text="${format.type}">
@@ -26,7 +37,10 @@
             </option>
         </select>
         <br>
-        <p>Rating: <input type="text" th:field="${release.rating}"></p>
+        <p>
+            Rating: <input type="text" th:field="*{rating}">
+            <span th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}">The rating must be between 1 and 5</span>
+        </p>
         <input type="submit" value="Add"> <input type="reset" value="Reset">
     </form>
 </body>
