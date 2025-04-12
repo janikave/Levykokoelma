@@ -7,5 +7,7 @@ public interface GenreRepository extends CrudRepository<Genre, Long> {
 
     List<Genre> findAll();
 
-}
+    List<Genre> findByGenreId(Long genreId);
 
+    List<Genre> findByName(String name);
+}
