@@ -3,6 +3,8 @@ package harjoitustyo.levykokoelma.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -35,10 +37,12 @@ public class Release {
     private Integer rating;
 
     @ManyToOne
+    @JsonIgnoreProperties("records")
     @JoinColumn(name = "formatId")
     private Format format;
 
     @ManyToMany
+    @JsonIgnoreProperties("records")
     @JoinTable(name = "release_genre", joinColumns = @JoinColumn(name = "releaseId"), inverseJoinColumns = @JoinColumn(name = "genreId"))
     private List<Genre> genres = new ArrayList<>();
 
