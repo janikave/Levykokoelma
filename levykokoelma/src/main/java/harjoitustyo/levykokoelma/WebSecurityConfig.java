@@ -23,9 +23,7 @@ public class WebSecurityConfig {
         public SecurityFilterChain configure(HttpSecurity http) throws Exception {
                 http.authorizeHttpRequests(authorize -> authorize
                                 .requestMatchers("/", "/addgenre", "/addrelease", "/collection", "/genres").permitAll()
-                                .requestMatchers("/deleterelease/{releaseId}", "/editrelease/{releaseId}")
-                                .hasAnyAuthority("ADMIN", "USER")
-                                .requestMatchers("/editrelease/{releaseId}").hasRole("USER")
+                                .requestMatchers("/deleterelease/**", "/editrelease/**").hasAnyRole("ADMIN", "USER")
                                 .requestMatchers(toH2Console()).permitAll()
                                 .anyRequest().authenticated())
                                 .csrf(csrf -> csrf

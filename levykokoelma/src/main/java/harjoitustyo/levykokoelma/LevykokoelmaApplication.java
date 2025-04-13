@@ -80,7 +80,7 @@ public class LevykokoelmaApplication {
 			}
 
 			AppUser user1 = new AppUser("user",
-					"$2a$12$RTpkDOxp1aAw7UlLiGQ9H.Xd6OCW6DxUY04d7xs8HH4Po.UhVsj1e",
+					"$2a$12$FeWZyt6X8hmXA6CYqgLk2O1OxwWiC1.t2g3aypixBvJHgM4RGGAzC",
 					"ROLE_USER");
 			AppUser user2 = new AppUser("admin",
 					"$2a$12$QTHarE4Smz.WIuxkcVfEzeP6j0ZLjyZA6wcdgS6LLf8QGxyY39d4e",

@@ -6,17 +6,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Record Collection</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <p>User: <span sec:authentication="name"></span></p>
-    <h3>Records</h3>
-
-    <a href="/addrelease">Add new release</a>
-    <a href="/addgenre">Add new genre</a>
+    <header>
+        <h1>Record Collection</h1>
+    </header>
+    <nav>
+        <a href="/addrelease">Add new release</a>
+        <a href="/addgenre">Add new genre</a>
+        <a href="/collection">Check the collection</a>
+        <a href="/genres">Genres</a>
+    </nav>
 
     <table>
+        <h3>Records</h3>
         <tr>
             <th>Title</th>
             <th>Artist</th>
@@ -32,17 +38,23 @@
             <td th:text="${record.format.type}">Format</td>
             <td><span th:each="genre : ${record.genres}" th:text="${genre.name + '  '}"></span></td>
             <td th:text="${record.rating}">Rating</td>
-            <td><a th:href="@{/editrelease/{releaseId}(releaseId=${record.releaseId})}">Edit</a></td>
-            <td sec:authorize="hasRole('ADMIN')"><a
+            <td><a class="edit" th:href="@{/editrelease/{releaseId}(releaseId=${record.releaseId})}">Edit</a></td>
+            <td sec:authorize="hasRole('USER')"><a class="delete"
                     th:href="@{/deleterelease/{releaseId}(releaseId=${record.releaseId})}">Delete</a></td>
         </tr>
     </table>
 
-    <div>
+    <a class="releaselink" href="/addrelease">Want to add a new release?</a>
+
+    <div class="logout">
+        <h4>User:</h4>
+        <p><span sec:authentication="name"></span></p>
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Log out">
         </form>
     </div>
+
+
 </body>
 
 </html>

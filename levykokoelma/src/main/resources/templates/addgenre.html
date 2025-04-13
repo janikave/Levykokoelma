@@ -5,16 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add new genre</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <h3>New Genre</h3>
+    <header>
+        <h1>Record Collection</h1>
+    </header>
+    <nav>
+        <a href="/addrelease">Add new release</a>
+        <a href="/addgenre">Add new genre</a>
+        <a href="/collection">Check the collection</a>
+    </nav>
+
+    <h3 class="formheader">New Genre</h3>
 
     <form action="#" th:action="@{/savegenre}" th:object="${genre}" method="post">
         <p>Genre name: <input type="text" th:field="${genre.name}"></p>
         <input type="submit" value="Add">
     </form>
+
+    <div class="logout">
+        <h4>User:</h4>
+        <p><span sec:authentication="name"></span></p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Log out">
+        </form>
+    </div>
 
 </body>
 

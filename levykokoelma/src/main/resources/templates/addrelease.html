@@ -4,12 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>New Release</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-    <h2>Add new release to your collection</h2>
+    <header>
+        <h1>Record Collection</h1>
+    </header>
+    <nav>
+        <a href="/addrelease">Add new release</a>
+        <a href="/addgenre">Add new genre</a>
+        <a href="/collection">Check the collection</a>
+    </nav>
+
+    <h3 class="formheader">Add new release to your collection</h3>
 
     <form action="#" th:action="@{${release.releaseId} != null ? '/updaterelease' : '/saverelease'}"
         th:object="${release}" method="post">
@@ -43,6 +53,14 @@
         </p>
         <input type="submit" value="Add"> <input type="reset" value="Reset">
     </form>
+
+    <div class="logout">
+        <h4>User:</h4>
+        <p><span sec:authentication="name"></span></p>
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Log out">
+        </form>
+    </div>
 </body>
 
 </html>
