@@ -59,11 +59,12 @@ public class ReleaseController {
             model.addAttribute("formats", frepository.findAll());
             model.addAttribute("genres", grepository.findAll());
             return "addrelease";
-        } else {
-            repository.save(release);
-
-            return "redirect:/collection";
         }
+
+        repository.save(release);
+
+        return "redirect:/collection";
+
     }
 
     @GetMapping("/editrelease/{releaseId}")
@@ -78,7 +79,15 @@ public class ReleaseController {
     }
 
     @PostMapping("/updaterelease")
-    public String updateRelease(@ModelAttribute Release release, @RequestParam("genres") List<Long> genreIds) {
+    public String updateRelease(@ModelAttribute Release release,
+            BindingResult bindingResult, @RequestParam("genres") List<Long> genreIds, Model model) {
+
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("formats", frepository.findAll());
+            model.addAttribute("genres", grepository.findAll());
+            return "addrelease";
+        }
+
         List<Genre> selectedGenres = (List<Genre>) grepository.findAllById(genreIds);
         release.setGenres(selectedGenres);
         repository.save(release);

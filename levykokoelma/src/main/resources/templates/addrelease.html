@@ -23,7 +23,7 @@
             <span th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}">Invalid artist</span>
         </p>
         <p>
-            Released in: <input type="text" th:field="*{releaseYear}">
+            Released in: <input type="number" th:field="*{releaseYear}" min="1900" max="2025">
             <span th:if="${#fields.hasErrors('releaseYear')}" th:errors="*{releaseYear}">Invalid release year</span>
         </p>
         <label for="formatlist">Format: </label>
@@ -38,7 +38,7 @@
         </select>
         <br>
         <p>
-            Rating: <input type="text" th:field="*{rating}">
+            Rating: <input type="number" th:field="*{rating}" min="1" max="5">
             <span th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}">The rating must be between 1 and 5</span>
         </p>
         <input type="submit" value="Add"> <input type="reset" value="Reset">

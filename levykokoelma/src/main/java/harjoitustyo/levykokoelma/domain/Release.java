@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import jakarta.persistence.Entity;
@@ -20,15 +21,15 @@ import jakarta.persistence.ManyToOne;
 public class Release {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long releaseId;
-    @NotNull(message = "Add the album title here")
+    private Long releaseId;
+    @NotBlank(message = "Add the album title here")
     private String title;
-    @NotNull(message = "Add the artist here")
+    @NotBlank(message = "Add the artist here")
     private String artist;
     @NotNull(message = "Add the release year here")
-    @Min(1900)
-    @Max(2025)
-    private long releaseYear;
+    @Min(value = 1900, message = "Release year can't be earlier than 1900")
+    @Max(value = 2025, message = "Release year can't be later than current year")
+    private Long releaseYear;
     @Min(1)
     @Max(5)
     private Integer rating;

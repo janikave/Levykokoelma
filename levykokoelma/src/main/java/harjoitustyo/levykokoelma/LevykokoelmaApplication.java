@@ -67,8 +67,8 @@ public class LevykokoelmaApplication {
 
 			log.info("some sample releases");
 
-			Release r1 = new Release("Abbey Road", "The Beatles", (long) 1969, 5, cd, poplist);
-			Release r2 = new Release("Let It Be", "The Replacements", (long) 1984, 4, lp, rocklist);
+			Release r1 = new Release("Abbey Road", "The Beatles", 1969, 5, cd, poplist);
+			Release r2 = new Release("Let It Be", "The Replacements", 1984, 4, lp, rocklist);
 
 			repository.save(r1);
 			repository.save(r2);
@@ -81,15 +81,13 @@ public class LevykokoelmaApplication {
 
 			AppUser user1 = new AppUser("user",
 					"$2a$12$RTpkDOxp1aAw7UlLiGQ9H.Xd6OCW6DxUY04d7xs8HH4Po.UhVsj1e",
-					"USER");
+					"ROLE_USER");
 			AppUser user2 = new AppUser("admin",
 					"$2a$12$QTHarE4Smz.WIuxkcVfEzeP6j0ZLjyZA6wcdgS6LLf8QGxyY39d4e",
 					"ROLE_ADMIN");
-			AppUser jani = new AppUser("jani", "$2a$12$2/XlGAKL62zYU0NOLW9Qz.PSGdiE2m2I5WhOmwRVCszowOdk0TWwC", "USER");
 
 			urepository.save(user1);
 			urepository.save(user2);
-			urepository.save(jani);
 
 		};
 	};
