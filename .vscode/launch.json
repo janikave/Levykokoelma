@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-LevykokoelmaApplication<levykokoelma>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "harjoitustyo.levykokoelma.LevykokoelmaApplication",
+            "projectName": "levykokoelma",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
