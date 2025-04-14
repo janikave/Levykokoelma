@@ -17,20 +17,21 @@
         <a href="/addrelease">Add new release</a>
         <a href="/addgenre">Add new genre</a>
         <a href="/collection">Check the collection</a>
+        <a href="/genres">Genres</a>
     </nav>
 
     <h3 class="formheader">New Genre</h3>
 
     <form action="#" th:action="@{/savegenre}" th:object="${genre}" method="post">
         <p>Genre name: <input type="text" th:field="${genre.name}"></p>
-        <input type="submit" value="Add">
+        <input class="submit-add" type="submit" value="Add">
     </form>
 
     <div class="logout">
         <h4>User:</h4>
         <p><span sec:authentication="name"></span></p>
         <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Log out">
+            <input class="submit-logout" type="submit" value="Log out">
         </form>
     </div>
 
